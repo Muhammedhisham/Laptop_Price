@@ -24,50 +24,27 @@ def home():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-
     if request.method == 'POST':
         
-        Company = None
-        Company = int(Company.replace(' ', '')) if isinstance(Company, str) else Company
-        TypeName = None
-        TypeName = int(TypeName.replace(' ', '')) if isinstance(TypeName, str) else TypeName
-        Inches = None
-        Inches = float(Inches.replace(' ', '')) if isinstance(Inches, str) else Inches
-        ScreenResolution = None
-        ScreenResolution = int(ScreenResolution.replace(' ', '')) if isinstance(ScreenResolution, str) else ScreenResolution
-        
-        Ram = None
-        Ram = float(Ram.replace(' ', '')) if isinstance(Ram, str) else Ram
-                
-        Gpu = None
-        Gpu = int(Gpu.replace(' ', '')) if isinstance(Gpu, str) else Gpu
-        OpSys = None
-        OpSys = int(OpSys.replace(' ', '')) if isinstance(OpSys, str) else OpSys   
+        Processor = request.form.get('Processor')
+        Memory2 = request.form.get('Memory2')
+        Memory1 = request.form.get('Memory1')
+        OpSys = request.form.get('OpSys')
+        Gpu = request.form.get('Gpu')
+        Ram = request.form.get('Ram')
+        ScreenResolution = request.form.get('ScreenResolution')
+        Inches = request.form.get('Inches')
+        TypeName = request.form.get('TypeName')
+        Company = request.form.get('Company')
 
-        Memory1 = None
-        Memory1 = int(Memory1.replace(' ', '')) if isinstance(Memory1, str) else Memory1
-        
-        Memory2 = None
-        Memory2 = int(Memory2.replace(' ', '')) if isinstance(Memory2, str) else Memory2
-        Processor = None
-        Processor = int(Processor.replace(' ', '')) if isinstance(Processor, str) else Processor
-                   
-        
-            #['Company', 'TypeName', 'Inches', 'ScreenResolution', 'Ram', 'Gpu',
-    #    'OpSys', 'Memory1', 'Memory2', 'Processor']
-    #([[0,4,14,15,8.0,61,5,12,6,13]])
-#     Company           1273 non-null   int32  
-#  1   TypeName          1273 non-null   int32  
-#  2   Inches            1273 non-null   object 
-#  3   ScreenResolution  1273 non-null   int32  
-#  4   Ram               1273 non-null   float64
-#  5   Gpu               1273 non-null   int32  
-#  6   OpSys             1273 non-null   int32  
-#  7   Memory1           1273 non-null   int32  
-#  8   Memory2           1273 non-null   int32  
-#  9   Processor         1273 non-null   int32  
-
-        prediction = model.predict([[Company,TypeName,Inches,ScreenResolution,Ram,Gpu,OpSys,Memory1,Memory2,Processor]])
+        input=pd.DataFrame([[Processor,Memory1,Memory2,OpSys,Gpu,Ram,ScreenResolution,Inches,TypeName,Company]],
+                columns=['Processor','Memory1','Memory2','OpSys','Gpu','Ram','ScreenResolution','Inches','TypeName','Company'])
+        # prediction=model.predict(input)[0]
+        print('fndsfffffffffff$$$$$$$$$$$$$$$$$$$$',input)
+          
+        # return str(prediction)
+      
+        prediction = model.predict([[Processor,Memory1,Memory2,OpSys,Gpu,Ram,ScreenResolution,Inches,TypeName,Company]])
         prediction = prediction[0]
         print('prediction=', prediction)
         return render_template('index.html', prediction=prediction)
