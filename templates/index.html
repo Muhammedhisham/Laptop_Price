@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/static/CSS/index.css" />
+
+    <title>Laptop Price</title>
+  </head>
+  <body>
+    <div>
+      <div>
+        <div id="A">
+          <h2>Laptop Price Prediction</h1>
+          <div id="B">
+            
+            <form method="POST" action="/predict">
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="company">Company</label>
+                  <select class="form-control" id="company" name="Company">
+                    {% for Company in Company %}
+                    <option value="{{ loop.index0 }}">{{ Company }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="typeName">Type Name</label>
+                  <select class="form-control" id="typeName" name="TypeName">
+                    {% for typeName in TypeName %}
+                      <option value="{{ loop.index0 }}">{{ typeName }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inches">Inches</label>
+                  <select class="form-control" id="inches" name="Inches">
+                    {% for Inches in Inches %}
+                    <option value="{{ loop.index0 }}">{{ Inches }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="screenResolution">Screen Resolution</label>
+                  <select
+                    class="form-control"
+                    id="screenResolution"
+                    name="ScreenResolution"
+                  >
+                    {% for ScreenResolution in ScreenResolution %}
+                    <option value="{{ loop.index0 }}">
+                      {{ ScreenResolution }}
+                    </option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="ram">Ram</label>
+                  <select class="form-control" id="ram" name="Ram">
+                    {% for Ram in Ram %}
+                    <option value="{{ loop.index0 }}">{{ Ram }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="gpu">Gpu</label>
+                  <select class="form-control" id="gpu" name="Gpu">
+                    {% for Gpu in Gpu %}
+                    <option value="{{ loop.index0 }}">{{ Gpu }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="opSys">OpSys</label>
+                  <select class="form-control" id="opSys" name="OpSys">
+                    {% for OpSys in OpSys %}
+                    <option value="{{ loop.index0 }}">{{ OpSys }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="memory1">Memory 1</label>
+                  <select class="form-control" id="memory1" name="Memory1">
+                    {% for Memory1 in Memory1 %}
+                    <option value="{{ loop.index0 }}">{{ Memory1 }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="memory2">Memory 2</label>
+                  <select class="form-control" id="memory2" name="Memory2">
+                    {% for Memory2 in Memory2 %}
+                    <option value="{{ loop.index0 }}">{{ Memory2 }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="processor">Processor</label>
+                  <select class="form-control" id="processor" name="Processor">
+                    {% for Processor in Processor %}
+                    <option value="{{ loop.index0 }}">{{ Processor }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group col-md-8">
+                  <label for="inputState">Predicted Price</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="{{prediction}}"
+                    readonly
+                  />
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
